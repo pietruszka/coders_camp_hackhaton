@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
-import Mission from './mission';
+import Mission from './missionElement';
 import { List } from 'antd';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+// import { newQuestList } from '../../Actions/index';
+import { addNewQuest } from './../../reducers/missionList';
 let exampleMission = {
   title: 'Kill a dragon',
   description: 'Dragon has attacked our villige! Please help! Complete 20 questions',
   progress: 0,
   goal: 20,
+  type: 'ANWSER_QUEST',
   id: 0,
 };
 
@@ -21,12 +26,15 @@ class MissionsList extends Component {
   }
 
   handleTakeMission = (mission, toTake) => {
-    if (toTake === true && this.state.missionsTaken.length < 3) {
+    if (toTake === true && this.props.mission.length < 3) {
       let newState = this.state.missionsTaken; // new array
       //let newState = this.state.missionsTaken;
       newState.push(mission);
-      this.setState({ missionTaken: newState });
+      this.setState({ missionsTaken: newState });
       this.deleteMissionFromToTakeList(mission, this.state.missionsToTake);
+      //redux
+      console.log(this.state.missionsTaken);
+      this.props.addNewQuest(mission);
     }
   };
   deleteMissionFromToTakeList(mission, state) {
@@ -57,11 +65,11 @@ class MissionsList extends Component {
   }
 
   render() {
-    this.renderMissionList(this.state.missionsTaken);
+    // this.renderMissionList(this.props.mission);
     return (
       <List>
         <h3>Twoje aktyalne misje:</h3>
-        <ul>{this.renderMissionList(this.state.missionsTaken, true)}</ul>
+        <ul>{this.renderMissionList(this.props.mission, true)}</ul>
         <h3> Misje do wzięcia: </h3>
         <ul>{this.renderMissionList(this.state.missionsToTake, true)}</ul>
       </List>
@@ -69,4 +77,9 @@ class MissionsList extends Component {
   }
 }
 
-export default MissionsList;
+//export default MissionsList;
+function mapStateToProps({mission}) {
+  return { mission };
+}
+
+export default connect(mapStateToProps, ({ addNewQuest }))(MissionsList);
