@@ -5,7 +5,8 @@ let exampleMission={
   title:"Kill a dragon",
   description:"Dragon has attacked our villige! Please help! Complete 20 questions",
   progress:0,
-  goal:20
+  goal:20,
+  id:0
 }
 
 class MissionsList extends Component{
@@ -14,13 +15,22 @@ class MissionsList extends Component{
     this.state={missionsToTake:[exampleMission,exampleMission,exampleMission], // download missions once a day.
                 missionsTaken:[exampleMission,exampleMission,exampleMission]} // download missions from backend
   }
+  renderMissionList(state){
+
+    return state.map(
+      (mission) => {
+        console.log(mission);
+        return <li><Mission title={mission.title} description={mission.description} progress={mission.progress} goal={mission.goal}/></li>
+      }
+    )
+  }
   render(){
+    this.renderMissionList(this.state.missionsTaken);
     return <div>
-     <Mission title={this.state.missionsTaken[0].title}
-        description={this.state.missionsTaken[0].description}
-        progress={this.state.missionsTaken[0].progress}
-        goal={this.state.missionsTaken[0].goal}
-     />
+        Twoje aktyalne misje:
+        <ul >{this.renderMissionList(this.state.missionsTaken)}</ul>
+        Misje do wzięcia:
+        <ul>{this.renderMissionList(this.state.missionsToTake)}</ul>
       </div>;
   }
 
