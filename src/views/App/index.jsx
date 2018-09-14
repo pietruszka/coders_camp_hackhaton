@@ -13,6 +13,11 @@ const { Header, Sider, Content } = Layout;
 import { Button } from 'antd';
 import Profile from './../../components/Profile'
 import Main from './../../components/Main'
+import Mission from './../../components/Mission'
+import Equipment from './../../components/Equipment'
+import Courses from './../../components/Courses'
+import Team from './../../components/Team'
+
 import styled from 'styled-components';
 import { setUserProfile } from '../../reducers/rootReducer';
 
@@ -174,13 +179,13 @@ class App extends PureComponent {
                 </StyledHeader>
                 <Content style={{ margin: '24px 16px', padding: 24, background: '#fff', minHeight: 280, height: '100%' }}>
                   <Fragment>
-                    <div>
-                      <Link to="/">Main</Link>
-                      <Link to="/profile">Profile</Link>
-                    </div>
-                    <Button type="primary">Primary</Button>
                     <Route exact path="/" component={Main} />
                     <Route exact path="/profile" component={Profile} />
+                    <Route exact path="/missions" component={Mission} />
+                    <Route exact path="/equipment" component={Equipment} />
+                    <Route exact path="/courses" component={Courses} />
+                    <Route exact path="/team" component={Team} />
+                    <Route exact path="/logout" component={Mission} />
                   </Fragment>
                 </Content>
               </StyledLayout>
