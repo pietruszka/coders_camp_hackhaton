@@ -38,6 +38,9 @@ const Container = styled.h2`
     bottom: 27vh;
     background-image: url("${helm}");
   }
+  .gridStyle :hover{
+    cursor: pointer;
+  }
 `;
 const gridStyle = {
   width: '25%',
@@ -47,7 +50,7 @@ const gridStyle = {
 export default class Ekwipunek extends Component {
   constructor() {
     super();
-    console.log(helm);
+    // console.log(helm);
     this.state = {
       Level: 10,
       EXP: 150,
@@ -67,7 +70,7 @@ export default class Ekwipunek extends Component {
 
       switch (e.target.id) {
         case "1":
-          console.log('');
+          // console.log('');
           this.setState({ Strength: ++this.state.Strength, Points: --this.state.Points });
           break;
         case "2":
@@ -90,14 +93,14 @@ export default class Ekwipunek extends Component {
       <div className="item" id="armor"></div>
       <div className="item" id="boots"></div>
       <Card title="Statystyki">
-        <Card.Grid style={gridStyle}>Level: {this.state.Level}</Card.Grid>
-        <Card.Grid style={gridStyle}>EXP: {this.state.EXP}/{this.state.EXPneeded}</Card.Grid>
-        <Card.Grid style={gridStyle}>Points to spend: {this.state.Points}</Card.Grid>
-        <Card.Grid style={gridStyle}>HP: {this.state.HP}/{this.state.HPmax}</Card.Grid>
-        <Card.Grid id="1" onClick={this.klik} style={gridStyle}>Strength:{this.state.Strength}</Card.Grid>
-        <Card.Grid id="2" onClick={this.klik} style={gridStyle}>Agility:{this.state.Agility}</Card.Grid>
-        <Card.Grid id="3" onClick={this.klik} style={gridStyle}>Luck:{this.state.Luck}</Card.Grid>
-        <Card.Grid id="4" onClick={this.klik} style={gridStyle}>Intelligence: {this.state.Intelligence}</Card.Grid>
+        <Card.Grid style={gridStyle} className="staty">Level: {this.state.Level}</Card.Grid>
+        <Card.Grid style={gridStyle} className="staty">EXP: {this.state.EXP}/{this.state.EXPneeded}</Card.Grid>
+        <Card.Grid style={gridStyle} className="staty">Points to spend: {this.state.Points}</Card.Grid>
+        <Card.Grid style={gridStyle} className="staty">HP: {this.state.HP}/{this.state.HPmax}</Card.Grid>
+        <Card.Grid id="1" onClick={this.klik} style={gridStyle} className="staty">Strength:{this.state.Strength}</Card.Grid>
+        <Card.Grid id="2" onClick={this.klik} style={gridStyle} className="staty">Agility:{this.state.Agility}</Card.Grid>
+        <Card.Grid id="3" onClick={this.klik} style={gridStyle} className="staty">Luck:{this.state.Luck}</Card.Grid>
+        <Card.Grid id="4" onClick={this.klik} style={gridStyle} className="staty">Intelligence: {this.state.Intelligence}</Card.Grid>
       </Card>,
     </Container>;
 
