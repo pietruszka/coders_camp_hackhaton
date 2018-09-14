@@ -11,7 +11,7 @@ module.exports = merge(common, {
     publicPath: '/',
   },
   mode: 'development',
-  devtool: 'eval',
+  devtool: 'source-map',
   plugins: [
     new ErrorOverlayPlugin(),
     new BundleAnalyzerPlugin({
