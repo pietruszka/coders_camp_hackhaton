@@ -4,8 +4,8 @@ class Mission extends Component {
   render() {
     return (
       <div>
-        {this.props.title}
-        {this.props.description}
+        <h4>{this.props.title}</h4>
+        {this.props.description}<br />
         {this.props.progress}/{this.props.goal}
       </div>
     );
