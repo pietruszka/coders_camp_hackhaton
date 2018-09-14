@@ -7,7 +7,6 @@ class App extends PureComponent {
     return (
       <Fragment>
         <Header text="Hello World!" color="primary" />
-        <Button type="primary">Primary</Button>
       </Fragment>
     );
   }

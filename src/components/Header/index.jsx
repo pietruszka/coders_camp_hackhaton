@@ -1,10 +1,11 @@
 import React, { PureComponent } from 'react';
 import { string, oneOf } from 'prop-types';
+import Ekwipunek from '../ekwipunek/ekwipunek'
 import { Container } from './styles';
 
 class Header extends PureComponent {
   render() {
-    return <div>header</div>;
+    return <Ekwipunek />;
   }
 }
 
