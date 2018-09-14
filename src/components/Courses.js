@@ -3,6 +3,34 @@ import connect from 'react-redux/es/connect/connect';
 import { setUserProfile } from '../reducers/rootReducer';
 import { Button, notification } from 'antd';
 import helmet from './img/images.png';
+import styled from 'styled-components';
+const ReactMarkdown = require('react-markdown')
+
+const StyledQuestion = styled(ReactMarkdown)`
+  background-color: #9ea93f;
+  padding: 10px 0;
+  color: #fff;
+  border-radius: 3px;
+  border-bottom: 2px #60712f solid;
+  text-align: center;
+  margin-bottom: 30px;
+  > * {
+    color: #f2f5f2;
+  }
+`;
+
+const StyledAnswear = styled(ReactMarkdown)`
+  background-color: #73a6ad;
+  padding: 10px 0;
+  color: #fff;
+  border-radius: 3px;
+  border-bottom: 2px #1890ff solid;
+  text-align: center;
+  margin-bottom: 30px;
+  > * {
+    color: #f2f5f2;
+  }
+`;
 
 class Courses extends PureComponent {
   state = {
@@ -38,9 +66,8 @@ class Courses extends PureComponent {
   renderAnswearList = (ansList) => {
     return ansList.map(({ content, correct }) => {
       return (
-        <div onClick={() => this.onAnswClick(correct)}>
-          {content}
-        </div>
+        <div onClick={() => this.onAnswClick(correct)}><StyledAnswear source={content}>
+        </StyledAnswear></div>
       )
     })
   }
@@ -50,7 +77,7 @@ class Courses extends PureComponent {
     if(this.state.question) {
       return (
         <Fragment>
-          <div>{this.state.question.question}</div>
+          <StyledQuestion source={this.state.question.question}></StyledQuestion>
           <div>{this.renderAnswearList(this.state.question.answear)}</div>
         </Fragment>
       );

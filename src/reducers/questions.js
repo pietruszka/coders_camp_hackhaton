@@ -1,13 +1,20 @@
 export default [
   {
-    question: 'q1',
+    question: `# This is an <h1>
+## This is an <h2>
+### This is an <h3>
+#### This is an <h4>
+##### This is an <h5>
+###### This is an <h6>`,
     answear: [
       {
         content: 'c1',
         correct: true,
       },
       {
-        content: 'c1',
+        content: `\`\`\`math #yourmathlabel
+a + b = c
+\`\`\``,
         correct: false,
       },
       {
