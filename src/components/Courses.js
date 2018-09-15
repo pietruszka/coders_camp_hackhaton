@@ -1,9 +1,89 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, Fragment } from 'react';
+import connect from 'react-redux/es/connect/connect';
+import { setUserProfile } from '../reducers/rootReducer';
+import { Button, notification } from 'antd';
+import helmet from './img/images.png';
+import styled from 'styled-components';
+const ReactMarkdown = require('react-markdown')
+
+const StyledQuestion = styled(ReactMarkdown)`
+  background-color: #9ea93f;
+  padding: 10px 0;
+  color: #fff;
+  border-radius: 3px;
+  border-bottom: 2px #60712f solid;
+  text-align: center;
+  margin-bottom: 30px;
+  > * {
+    color: #f2f5f2;
+  }
+`;
+
+const StyledAnswear = styled(ReactMarkdown)`
+  background-color: #73a6ad;
+  padding: 10px 0;
+  color: #fff;
+  border-radius: 3px;
+  border-bottom: 2px #1890ff solid;
+  text-align: center;
+  margin-bottom: 30px;
+  > * {
+    color: #f2f5f2;
+  }
+`;
 
 class Courses extends PureComponent {
+  state = {
+    question: null,
+  }
+
+  componentDidMount() {
+    this.setState({ question: this.getRandomQuestion()});
+  }
+
+  getRandomQuestion = () => {
+    const questionList = this.props.course;
+    const numOfItem = questionList.length;
+    const choosenQuestion = (numOfItem * Math.random() * 100) / 100;
+    return questionList[Math.ceil(choosenQuestion) -1];
+  };
+
+  openNotification = () => {
+    notification.open({
+      message: (<div style={{color: '#60712f', fontSize: '20px'}}>You get a prize !!</div>),
+      description: (<div style={{display: 'flex', justifyContent: 'center'}}><img src={helmet}/></div>),
+    });
+  }
+
+  onAnswClick = (isCorrect) => {
+    if(isCorrect) {
+      this.props.setUserProfile({ exp: this.props.profile.exp + 2})
+      this.openNotification();
+      this.setState({question: this.getRandomQuestion()})
+    }
+  };
+
+  renderAnswearList = (ansList) => {
+    return ansList.map(({ content, correct }) => {
+      return (
+        <div onClick={() => this.onAnswClick(correct)}><StyledAnswear source={content}>
+        </StyledAnswear></div>
+      )
+    })
+  }
   render() {
-    return <div>Courses</div>;
+    console.log(this.props.course)
+    // const { question, answear } = this.getRandomQuestion();
+    if(this.state.question) {
+      return (
+        <Fragment>
+          <StyledQuestion source={this.state.question.question}></StyledQuestion>
+          <div>{this.renderAnswearList(this.state.question.answear)}</div>
+        </Fragment>
+      );
+    } else return null;
+
   }
 }
 
-export default Courses;
+export default connect(({course, profile}) => ({course, profile}), ({ setUserProfile }))(Courses);
