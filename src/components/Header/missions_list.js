@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Mission from './missionElement';
 import { List } from 'antd';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import QuestList from '../../reducers/QuestList';
 // import { newQuestList } from '../../Actions/index';
 import { addNewQuest } from './../../reducers/missionList';
 let exampleMission = {
@@ -57,7 +57,8 @@ class MissionsList extends Component {
               description={mission.description}
               progress={mission.progress}
               goal={mission.goal}
-              id={index}
+              id={mission.id}
+              key={index}
             />
           </li>
         );
@@ -67,19 +68,25 @@ class MissionsList extends Component {
   render() {
     // this.renderMissionList(this.props.mission);
     return (
-      <List>
-        <h3>Twoje aktyalne misje:</h3>
-        <ul>{this.renderMissionList(this.props.mission, true)}</ul>
-        <h3> Misje do wzięcia: </h3>
-        <ul>{this.renderMissionList(this.state.missionsToTake, true)}</ul>
-      </List>
+      <div>
+        {QuestList[0].title}
+        <List>
+          <h3>Twoje aktyalne misje:</h3>
+          <ul>{this.renderMissionList(this.props.mission, true)}</ul>
+          <h3> Misje do wzięcia: </h3>
+          <ul>{this.renderMissionList(this.state.missionsToTake, true)}</ul>
+        </List>
+      </div>
     );
   }
 }
 
 //export default MissionsList;
-function mapStateToProps({mission}) {
+function mapStateToProps({ mission }) {
   return { mission };
 }
 
-export default connect(mapStateToProps, ({ addNewQuest }))(MissionsList);
+export default connect(
+  mapStateToProps,
+  { addNewQuest },
+)(MissionsList);
