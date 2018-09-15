@@ -6,7 +6,7 @@ let QuestList = [
     goal: 3,
     type: 'ANWSER_QUEST',
     id: 0,
-    reward: 'item',
+    reward: 4,
   },
   {
     title: 'Znajdź skarb w labiryncie',
@@ -15,7 +15,7 @@ let QuestList = [
     goal: 3,
     type: 'COMPLETE_QUEST_LIST',
     id: 1,
-    reward: 'exp',
+    reward: 5,
   },
   {
     title: 'Uratuj smoka, zgładź księżniczkę!',
@@ -24,7 +24,7 @@ let QuestList = [
     goal: 3,
     type: 'ANWSER_QUEST',
     id: 2,
-    reward: 'item',
+    reward: 3,
   },
   {
     title: 'Dziki zgon!',
@@ -33,7 +33,7 @@ let QuestList = [
     goal: 3,
     type: 'COMPLETE_QUEST_LIST',
     id: 3,
-    reward: 'exp',
+    reward: 6,
   },
 ];
 export default QuestList;

@@ -135,7 +135,7 @@ const Container = styled.h2`
     top: 25vh;
     left: 47vw;
   }
-  .staty, .staty1 {
+  .staty .staty1 {
     user-select: none; /* Standard syntax */
   }
   .staty1 :hover {
