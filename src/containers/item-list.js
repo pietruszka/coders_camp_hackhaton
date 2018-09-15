@@ -4,7 +4,7 @@ import { selectItem } from '../actions/index';
 import { bindActionCreators } from 'redux';
 import { Tabs } from 'antd';
 import { List, Card } from 'antd';
-import { dataWeapons, dataShield, dataArmor } from './item-data';
+import {dataWeapons, dataShield, dataArmor, dataMagic} from './item-data';
 const TabPane = Tabs.TabPane;
 
 function callback(key) {
@@ -21,7 +21,7 @@ class ItemList extends Component {
             {item.items.map(item => {
               return (
                 <ul key={item.id} onClick={() => this.props.selectItem(item)}>
-                  {item.title}
+                  <img src={item.img}/>
                 </ul>
               );
             })}
@@ -30,9 +30,9 @@ class ItemList extends Component {
       </List.Item>
     );
   }
-  renderTable(data) {
+  renderTable(data,index) {
     return (
-      <TabPane tab={data.dataTitle} key="1">
+      <TabPane tab={data.dataTitle} key={index}>
         <div>
           <List
             grid={{ gutter: 16, xs: 1, sm: 2, md: 4, lg: 4, xl: 6, xxl: 3 }}
@@ -46,8 +46,11 @@ class ItemList extends Component {
   renderList() {
     return (
       <div>
-        <Tabs defaultActiveKey="1" onChange={callback}>
-          {this.renderTable(dataWeapons)}
+        <Tabs defaultActiveKey="0" onChange={callback}>
+          {this.renderTable(dataWeapons,0)}
+          {this.renderTable(dataShield,1)}
+          {this.renderTable(dataArmor,2)}
+          {this.renderTable(dataMagic,3)}
         </Tabs>
       </div>
     );

@@ -8,9 +8,9 @@ class ItemDetail extends Component {
     }
     return (
       <div>
-        <h3>Details for: </h3>
-        <div>My item: {this.props.item.title}</div>
-        <div>Description: {this.props.item.des}</div>
+        <h3>Szczegóły dla: </h3>
+        <div>Przedmiot: {this.props.item.title}</div>
+        <div>Opis: {this.props.item.des}</div>
       </div>
     );
   }

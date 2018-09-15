@@ -6,8 +6,9 @@ class Equipment extends PureComponent {
   render() {
     return (
       <div>
-        <ItemList/>
         <ItemDetail/>
+        <ItemList/>
+
       </div>
     );
   }
