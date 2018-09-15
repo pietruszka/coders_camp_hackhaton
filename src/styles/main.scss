@@ -75,3 +75,18 @@ label {
   font-weight: var(--bold);
   color: var(--text3);
 }
+.ant-spin-container > ul{
+  border-bottom:3px solid rgb(96, 113, 47);
+  text-align: center;
+  font-size:1em;
+}
+
+ .ant-spin-container > ul >li> div:hover{
+  background-color:rgba(96, 113, 47, 0.5);
+  color:white !important;
+
+}
+.QuestTitle{
+  font-size:2em;
+}
+
