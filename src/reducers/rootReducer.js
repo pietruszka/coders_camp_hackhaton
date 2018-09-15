@@ -8,7 +8,7 @@ export const setUserProfile = (profile) => {
 };
 
 const initialState = {
-  name: 'NameXYZ',
+  name: '',
   mana: 100,
   exp: 50,
 };

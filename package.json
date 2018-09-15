@@ -8,7 +8,8 @@
   },
   "scripts": {
     "start": "webpack-dev-server --open --config webpack.dev.js",
-    "build": "webpack --config webpack.prod.js"
+    "build": "webpack --config webpack.prod.js",
+    "server": "nodemon ./src/server/app"
   },
   "author": "Konrad Szwarc",
   "license": "MIT",
@@ -67,6 +68,9 @@
   "dependencies": {
     "antd": "^3.9.2",
     "avatar-generator": "^1.0.8",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "lodash": "^4.17.11",
     "prop-types": "^15.6.2",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
@@ -76,6 +80,9 @@
     "react-router-dom": "^4.3.1",
     "redux": "^4.0.0",
     "redux-thunk": "^2.3.0",
+    "socket.io": "^2.1.1",
+    "socket.io-client": "^2.1.1",
+    "socket.io-emitter": "^3.1.1",
     "styled-components": "^3.4.6"
   }
 }

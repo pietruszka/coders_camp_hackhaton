@@ -16,11 +16,10 @@ import Main from './../../components/Main'
 import Mission from './../../components/Mission'
 import Equipment from './../../components/Equipment'
 import Courses from './../../components/Courses'
+import DeathMatch from '../../components/DeathMatch'
 import Team from './../../components/Team'
 
 import styled from 'styled-components';
-import { setUserProfile } from '../../reducers/rootReducer';
-
 
 const StyledMenu = styled(Menu)`
   background-color: #60712f;
@@ -147,19 +146,25 @@ class App extends PureComponent {
                     </Link>
                   </Menu.Item>
                   <Menu.Item key="5">
+                    <Link to="/dm">
+                      <Icon type="upload" />
+                      <span>Deathmatch</span>
+                    </Link>
+                  </Menu.Item>
+                  <Menu.Item key="6">
                     <Link to="/team">
                       <Icon type="upload" />
                       <span>Team</span>
                     </Link>
                   </Menu.Item>
-                  <Menu.Item key="6">
+                  <Menu.Item key="7">
                     <Link to="/logout">
                       <Icon type="upload" />
                       <span>Logout</span>
                     </Link>
                   </Menu.Item>
-                  <Menu.Item key="7">
-                    <Link to="/login">
+                  <Menu.Item key="8">
+                    <Link to="/">
                       <Icon type="upload" />
                       <span>Login</span>
                     </Link>
@@ -190,6 +195,7 @@ class App extends PureComponent {
                     <Route exact path="/missions" component={Mission} />
                     <Route exact path="/equipment" component={Equipment} />
                     <Route exact path="/courses" component={Courses} />
+                    <Route exact path="/dm" component={DeathMatch} />
                     <Route exact path="/team" component={Team} />
                     <Route exact path="/logout" component={Mission} />
                   </Fragment>

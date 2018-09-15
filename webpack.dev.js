@@ -7,8 +7,11 @@ const analyzer = require('webpack-bundle-analyzer');
 const { BundleAnalyzerPlugin } = analyzer;
 
 module.exports = merge(common, {
+  entry: "./src/index.jsx",
   output: {
     publicPath: '/',
+    path: path.join(__dirname, 'src'),
+    filename: 'bundle.js'
   },
   mode: 'development',
   devtool: 'eval',
