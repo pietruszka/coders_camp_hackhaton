@@ -6,6 +6,8 @@ import helmet from './img/images.png';
 import monster from './img/potwor.png';
 import { addQuestProgress } from '../reducers/missionList';
 import styled from 'styled-components';
+import { checkReward } from '../actions';
+import { killQuest } from '../reducers/missionList';
 const ReactMarkdown = require('react-markdown');
 
 const StyledQuestion = styled(ReactMarkdown)`
@@ -53,9 +55,13 @@ class Courses extends PureComponent {
     const choosenQuestion = (numOfItem * Math.random() * 100) / 100;
     return questionList[Math.ceil(choosenQuestion) - 1];
   };
-
+  checkQuest() {
+    this.props.addQuestProgress();
+    this.props.checkReward(this.props.mission);
+    this.props.killQuest(this.props.mission);
+  }
   openNotification = () => {
-    this.props.addQuestProgress(); //Check if quest should gain progress
+    this.checkQuest(); //Check if quest should gain progress
     notification.open({
       message: (
         <div style={{ color: '#60712f', fontSize: '18px' }}>
@@ -160,6 +166,6 @@ class Courses extends PureComponent {
 }
 
 export default connect(
-  ({ course, profile }) => ({ course, profile }),
-  { setUserProfile, addQuestProgress },
+  ({ course, profile, mission }) => ({ course, profile, mission }),
+  { setUserProfile, addQuestProgress, checkReward, killQuest },
 )(Courses);
