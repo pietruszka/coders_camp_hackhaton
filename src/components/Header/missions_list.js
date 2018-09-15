@@ -15,10 +15,11 @@ let exampleMission = {
 };
 
 class MissionsList extends Component {
-
   constructor(props) {
     super(props);
-    this.state = { missionsToTake: [this.getRandomQuest(), this.getRandomQuest(), this.getRandomQuest()], missionsTaken: [] }; // download missions once a day. // download missions from backend
+    this.state = {
+      missionsToTake: [this.getRandomQuest(), this.getRandomQuest(), this.getRandomQuest()],
+    };
     // this.HandleTakeMission=this.HandleTakeMission.bind(this);
     //missionToTake.filter(({ id }) => id !== idElemDoUsuniecia)
   }
@@ -28,16 +29,14 @@ class MissionsList extends Component {
     return questList[Math.floor(Math.random() * questList.length)];
   };
   handleTakeMission = (mission, toTake) => {
-    this.getRandomQuest();
     if (toTake === true && this.props.mission.length < 3) {
-      let newState = this.state.missionsTaken; // new array
+      console.log(mission);
       //let newState = this.state.missionsTaken;
-      newState.push(mission);
-      this.setState({ missionsTaken: newState });
+      this.props.addNewQuest(mission);
       this.deleteMissionFromToTakeList(mission, this.state.missionsToTake);
       //redux
-     /// console.log(this.state.missionsTaken);
-      this.props.addNewQuest(mission);
+      /// console.log(this.state.missionsTaken);
+
     }
   };
   deleteMissionFromToTakeList(mission, state) {
