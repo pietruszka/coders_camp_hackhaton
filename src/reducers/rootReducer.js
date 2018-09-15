@@ -8,12 +8,20 @@ export const setUserProfile = profile => {
 };
 
 const initialState = {
-  name: 'NameXYZ',
-  mana: 100,
-  exp: 50,
+  Level: 1,
+  EXP: 0,
+  EXPneeded: 10,
+  Points: 5,
+  HP: 10,
+  HPmax: 10,
+  Strength: 5,
+  Agility: 5,
+  Luck: 5,
+  Intelligence: 5,
 };
 
-export default function(state = initialState, { type, payload }) {
+
+export default function (state = initialState, { type, payload }) {
   switch (type) {
     case SET_PROFILE: {
       return { ...state, ...payload };
