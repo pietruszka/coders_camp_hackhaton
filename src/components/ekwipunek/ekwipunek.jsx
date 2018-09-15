@@ -105,7 +105,7 @@ const Container = styled.h2`
   justify-content: center;
   flex-wrap: wrap;
   margin: 0;
-  padding:0;
+  padding: 0;
   #char {
     height: 55vh;
     width: 25vw;
