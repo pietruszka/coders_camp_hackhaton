@@ -6,7 +6,7 @@ import armor2 from './../IconPack/128x128/leather2.png'
 import armor3 from './../IconPack/128x128/armor.png'
 import armor4 from './../IconPack/128x128/armor2.png'
 
-import boots from './../IconPack/128x128/boots.png'
+import boots from './../IconPack/128x128/Boots.png'
 
 import bow1 from './../IconPack/128x128/bow.png'
 import bow2 from './../IconPack/128x128/bow2.png'
