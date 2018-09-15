@@ -2,9 +2,8 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {selectItem} from '../actions/index';
 import {bindActionCreators} from 'redux';
-
-//tabs from AntDesign
 import {Tabs} from 'antd';
+import {List, Card} from 'antd';
 
 const TabPane = Tabs.TabPane;
 
@@ -12,16 +11,83 @@ function callback(key) {
   console.log(key);
 }
 
-//end tabs
+const data = [
+  {
+    title: 'Axes',
+  },
+  {
+    title: 'Swords',
+  },
+  {
+    title: 'Hammers',
+  },
+  {
+    title: 'Daggers',
+  },
+  {
+    title: 'Bows',
+  },
+];
+const dataShield = [
+  {
+    title: 'Shields',
+  },
+
+];
+const dataArmor = [
+  {
+    title: 'Armors',
+  },
+  {
+    title: 'Boots',
+  },
+  {
+    title: 'Helmets',
+  },
+];
 
 class ItemList extends Component {
   renderList() {
     return (<div>
-
         <Tabs defaultActiveKey="1" onChange={callback}>
-          <TabPane tab={this.props.items[0].kind} key="1">{this.props.items[0].weaponKind}</TabPane>
-          <TabPane tab={this.props.items[1].kind} key="2">CTUTAJ LISTA PRZEDMIOTOW</TabPane>
-          <TabPane tab={this.props.items[2].kind} key="3">CTUTAJ LISTA PRZEDMIOTOW</TabPane>
+          <TabPane tab={this.props.items[0].kind} key="1">
+            <div>
+              <List
+                grid={{gutter: 16, xs: 1, sm: 2, md: 4, lg: 4, xl: 6, xxl: 3}}
+                dataSource={data}
+                renderItem={item => (
+                  <List.Item>
+                    <Card onClick = {() => this.props.selectItem(item)} title={item.title}>Tutaj obrazek!</Card>
+                    <Card onClick = {() => this.props.selectItem(item)}> klik </Card>
+                    <Card onClick = {() => this.props.selectItem(item)}>tutaj obrazek!</Card>
+                  </List.Item>
+                )}
+              />
+            </div>
+          </TabPane>
+          <TabPane tab={this.props.items[1].kind} key="2">
+            <List
+              grid={{gutter: 16, xs: 1, sm: 2, md: 4, lg: 4, xl: 6, xxl: 3}}
+              dataSource={dataShield}
+              renderItem={item => (
+                <List.Item>
+                  <Card title={item.title}>tutaj obrazek!</Card>
+
+                </List.Item>
+              )}
+            />
+          </TabPane>
+          <TabPane tab={this.props.items[2].kind} key="3">
+            <List
+              grid={{gutter: 16, xs: 1, sm: 2, md: 4, lg: 4, xl: 6, xxl: 3}}
+              dataSource={dataArmor}
+              renderItem={item => (
+                <List.Item>
+                  <Card title={item.title}>tutaj obrazek!</Card>
+                </List.Item>
+              )}
+            />
+          </TabPane>
         </Tabs>
       </div>
     );
