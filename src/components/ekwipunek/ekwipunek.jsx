@@ -42,7 +42,7 @@ class Ekwipunek extends Component {
   };
 
   render() {
-    // console.log(armor);
+    // console.log(this.state);
     return (
       <Container
         shield={this.shield}
@@ -60,35 +60,38 @@ class Ekwipunek extends Component {
         <div className="item" id="shield" />
         <Card title="Stats:">
           <Card.Grid style={gridStyle} className="staty1">
-            Level: {this.state.Level}
+            Poziom: {this.state.Level}
           </Card.Grid>
           <Card.Grid style={gridStyle} className="staty1">
-            EXP: {this.state.EXP}/{this.state.EXPneeded}
+            Doświadczenie: {this.state.EXP}/{this.state.EXPneeded}
           </Card.Grid>
           <Card.Grid style={gridStyle} className="staty1">
-            Points to spend: {this.state.Points}
+            Punkty umiejętności: {this.state.Points}
           </Card.Grid>
           <Card.Grid style={gridStyle} className="staty1">
-            HP: {this.state.HP}/{this.state.HPmax}
+            PŻ: {this.state.HP}/{this.state.HPmax}
           </Card.Grid>
           <Card.Grid id="1" onClick={this.klik} style={gridStyle} className="staty">
-            Strength:
+            Siła:
             {this.state.Strength}
           </Card.Grid>
           <Card.Grid id="2" onClick={this.klik} style={gridStyle} className="staty">
-            Agility:
+            Zręczność:
             {this.state.Agility}
           </Card.Grid>
           <Card.Grid id="3" onClick={this.klik} style={gridStyle} className="staty">
-            Luck:
+            Szczęście:
             {this.state.Luck}
           </Card.Grid>
           <Card.Grid id="4" onClick={this.klik} style={gridStyle} className="staty">
-            Intelligence: {this.state.Intelligence}
+            Inteligencja: {this.state.Intelligence}
           </Card.Grid>
         </Card>
       </Container>
     );
+  }
+  componentWillUnmount() {
+    this.props.setUserProfile(this.state);
   }
 }
 const Container = styled.h2`
@@ -135,7 +138,7 @@ const Container = styled.h2`
     top: 25vh;
     left: 47vw;
   }
-  .staty, .staty1 {
+  .staty .staty1 {
     user-select: none; /* Standard syntax */
   }
   .staty1 :hover {

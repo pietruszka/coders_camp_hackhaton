@@ -36,30 +36,79 @@ class Courses extends PureComponent {
   state = {
     question: null,
   }
-
+  monster = {
+    damage: 2,
+    exp: 2,
+    HP: 10,
+  }
   componentDidMount() {
-    this.setState({ question: this.getRandomQuestion()});
+    this.setState({ question: this.getRandomQuestion() });
   }
 
   getRandomQuestion = () => {
     const questionList = this.props.course;
     const numOfItem = questionList.length;
     const choosenQuestion = (numOfItem * Math.random() * 100) / 100;
-    return questionList[Math.ceil(choosenQuestion) -1];
+    return questionList[Math.ceil(choosenQuestion) - 1];
   };
 
   openNotification = () => {
     notification.open({
-      message: (<div style={{color: '#60712f', fontSize: '20px'}}>You get a prize !!</div>),
-      description: (<div style={{display: 'flex', justifyContent: 'center'}}><img src={helmet}/></div>),
+      message: (<div style={{ color: '#60712f', fontSize: '18px' }}>Dobrze!! Dostajesz {this.monster.exp + Math.floor(this.props.profile.Intelligence / 10)} Doświadczenia <br /> Zadałeś {this.props.profile.Strength} obrażeń</div>),
+      description: (<div style={{ display: 'flex', justifyContent: 'center' }}><img src={helmet} /></div>),
     });
   }
-
+  openNotificationerror = () => {
+    notification.open({
+      message: (<div style={{ color: '#60712f', fontSize: '18px' }}>Zła odpowiedź, tracisz {this.monster.damage} HP !!</div>),
+      // description: (<div style={{ display: 'flex', justifyContent: 'center' }}><img src={helmet} /></div>),
+    });
+  }
+  openNotificationdeath = () => {
+    notification.open({
+      message: (<div style={{ color: '#60712f', fontSize: '18px' }}>Umarłeś!! Tracisz {Math.floor(this.props.profile.EXP / 2)} Doświadczenia </div>),
+      // description: (<div style={{ display: 'flex', justifyContent: 'center' }}><img src={helmet} /></div>),
+    });
+  }
+  openNotificationdodge = () => {
+    notification.open({
+      message: (<div style={{ color: '#60712f', fontSize: '18px' }}>Zła odpowiedź ale unikasz obrażeń!</div>),
+      // description: (<div style={{ display: 'flex', justifyContent: 'center' }}><img src={helmet} /></div>),
+    });
+  }
+  openNotificationlvlup = () => {
+    notification.open({
+      message: (<div style={{ color: '#60712f', fontSize: '18px' }}>Gratulacje! Kolejny poziom</div>),
+      // description: (<div style={{ display: 'flex', justifyContent: 'center' }}><img src={helmet} /></div>),
+    });
+  }
   onAnswClick = (isCorrect) => {
-    if(isCorrect) {
-      this.props.setUserProfile({ exp: this.props.profile.exp + 2})
+    if (isCorrect) {
+      this.props.setUserProfile({ EXP: this.props.profile.EXP + this.monster.exp })
       this.openNotification();
-      this.setState({question: this.getRandomQuestion()})
+      if (this.props.profile.EXP >= this.props.profile.EXPneeded) {
+        this.props.setUserProfile({ EXP: 0 });
+        this.props.setUserProfile({ EXPneeded: (this.props.profile.EXPneeded + 5) });
+        this.props.setUserProfile({ Level: (this.props.profile.Level + 1) });
+        this.props.setUserProfile({ Points: (this.props.profile.Points + 5) });
+        this.openNotificationlvlup();
+      }
+      this.setState({ question: this.getRandomQuestion() })
+    } else if ((Math.random() + this.props.profile.Agility / 20) > 0.4) {
+      this.openNotificationdodge();
+      this.setState({ question: this.getRandomQuestion() })
+    }
+    else {
+      // console.log(this.props.profile.HP);
+      this.props.setUserProfile({ HP: this.props.profile.HP - this.monster.damage });
+      this.openNotificationerror();
+      // console.log(this.props.profile.HP);
+      if (this.props.profile.HP <= 0) {
+        // console.log(this.props.profile.HP);
+        this.props.setUserProfile({ HP: this.props.profile.HPmax });
+        this.openNotificationdeath();
+      }
+      this.setState({ question: this.getRandomQuestion() })
     }
   };
 
@@ -72,9 +121,9 @@ class Courses extends PureComponent {
     })
   }
   render() {
-    console.log(this.props.course)
+    // console.log(this.props.course) 
     // const { question, answear } = this.getRandomQuestion();
-    if(this.state.question) {
+    if (this.state.question) {
       return (
         <Fragment>
           <StyledQuestion source={this.state.question.question}></StyledQuestion>
@@ -86,4 +135,4 @@ class Courses extends PureComponent {
   }
 }
 
-export default connect(({course, profile}) => ({course, profile}), ({ setUserProfile }))(Courses);
+export default connect(({ course, profile }) => ({ course, profile }), ({ setUserProfile }))(Courses);

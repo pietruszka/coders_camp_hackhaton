@@ -26,11 +26,11 @@ const StyledMenu = styled(Menu)`
   background-color: #60712f;
 `;
 
-const StyledSider= styled(Sider)`
+const StyledSider = styled(Sider)`
   background-color: #9ea93f;
 `;
 
-const StyledItem= styled(Menu.Item)`
+const StyledItem = styled(Menu.Item)`
   background-color: #5b2a86;
 `;
 
@@ -109,11 +109,11 @@ class App extends PureComponent {
   };
 
   render() {
-    console.log(this.props.profile)
+    // console.log(this.props.profile)
     const { mana, exp, name } = this.props.profile
     return (
       <Fragment>
-        <Layout style={{height: '100%'}}>
+        <Layout style={{ height: '100%' }}>
           <Router>
             <Fragment>
               <StyledSider
@@ -168,15 +168,15 @@ class App extends PureComponent {
               </StyledSider>
               <StyledLayout>
                 <StyledHeader style={{ background: '#fff', padding: 0 }}>
-                  <div style={{display: 'flex', justifyContent: 'space-around'}}>
+                  <div style={{ display: 'flex', justifyContent: 'space-around' }}>
                     <Icon
                       className="trigger"
                       type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
                       onClick={this.toggle}
                     />
                     <span>{name}</span>
-                    <StyledStats mana={mana}  exp={exp} >
-                      <div  className="life"></div>
+                    <StyledStats mana={mana} exp={exp} >
+                      <div className="life"></div>
                       <div className="exp"></div>
                     </StyledStats>
                   </div>
@@ -203,4 +203,4 @@ class App extends PureComponent {
   }
 }
 
-export default connect(({profile}) => ({profile}))(App);
+export default connect(({ profile }) => ({ profile }))(App);

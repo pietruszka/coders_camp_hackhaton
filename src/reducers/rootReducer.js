@@ -8,17 +8,18 @@ export const setUserProfile = (profile) => {
 };
 
 const initialState = {
-  Level: 10,
-  EXP: 150,
-  EXPneeded: 200,
+  Level: 1,
+  EXP: 0,
+  EXPneeded: 10,
   Points: 5,
-  HP: 70,
-  HPmax: 100,
+  HP: 10,
+  HPmax: 10,
   Strength: 5,
   Agility: 5,
   Luck: 5,
   Intelligence: 5,
 };
+
 
 export default function (state = initialState, { type, payload }) {
   switch (type) {
