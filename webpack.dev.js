@@ -14,7 +14,7 @@ module.exports = merge(common, {
     filename: 'bundle.js'
   },
   mode: 'development',
-  devtool: 'eval',
+  devtool: 'source-map',
   plugins: [
     new ErrorOverlayPlugin(),
     new BundleAnalyzerPlugin({
