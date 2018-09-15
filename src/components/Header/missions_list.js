@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Mission from './missionElement';
 import { List } from 'antd';
 import { connect } from 'react-redux';
-import QuestList from '../../reducers/QuestList';
+
 // import { newQuestList } from '../../Actions/index';
 import { addNewQuest } from './../../reducers/missionList';
 let exampleMission = {
@@ -15,17 +15,20 @@ let exampleMission = {
 };
 
 class MissionsList extends Component {
+
   constructor(props) {
     super(props);
-    this.state = {
-      missionsToTake: [exampleMission, exampleMission, exampleMission], // download missions once a day.
-      missionsTaken: [],
-    }; // download missions from backend
+    this.state = { missionsToTake: [this.getRandomQuest(), this.getRandomQuest(), this.getRandomQuest()], missionsTaken: [] }; // download missions once a day. // download missions from backend
     // this.HandleTakeMission=this.HandleTakeMission.bind(this);
     //missionToTake.filter(({ id }) => id !== idElemDoUsuniecia)
   }
-
+  getRandomQuest = () => {
+    let questList = this.props.questList;
+    //var item = items[Math.floor(Math.random() * items.length)];
+    return questList[Math.floor(Math.random() * questList.length)];
+  };
   handleTakeMission = (mission, toTake) => {
+    this.getRandomQuest();
     if (toTake === true && this.props.mission.length < 3) {
       let newState = this.state.missionsTaken; // new array
       //let newState = this.state.missionsTaken;
@@ -33,7 +36,7 @@ class MissionsList extends Component {
       this.setState({ missionsTaken: newState });
       this.deleteMissionFromToTakeList(mission, this.state.missionsToTake);
       //redux
-      console.log(this.state.missionsTaken);
+     /// console.log(this.state.missionsTaken);
       this.props.addNewQuest(mission);
     }
   };
@@ -69,10 +72,10 @@ class MissionsList extends Component {
     // this.renderMissionList(this.props.mission);
     return (
       <div>
-        {QuestList[0].title}
+        {this.props.questList[0].title}
         <List>
           <h3>Twoje aktyalne misje:</h3>
-          <ul>{this.renderMissionList(this.props.mission, true)}</ul>
+          <ul>{this.renderMissionList(this.props.mission, false)}</ul>
           <h3> Misje do wzięcia: </h3>
           <ul>{this.renderMissionList(this.state.missionsToTake, true)}</ul>
         </List>
@@ -82,8 +85,8 @@ class MissionsList extends Component {
 }
 
 //export default MissionsList;
-function mapStateToProps({ mission }) {
-  return { mission };
+function mapStateToProps({ mission, questList }) {
+  return { mission, questList };
 }
 
 export default connect(

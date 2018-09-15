@@ -8,10 +8,10 @@ export const addNewQuest = mission => {
 };
 
 export default function(state = [], action) {
-  console.log(action.payload);
+ // console.log(action.payload);
   switch (action.type) {
     case ADD_NEW_QUEST: {
-      console.log(action.payload);
+   //   console.log(action.payload);
       return [...state, action.payload];
     }
   }
