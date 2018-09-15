@@ -16,18 +16,6 @@ class Ekwipunek extends Component {
     this.boots = itempaths[6].path;
     this.weapon = itempaths[10].path;
     this.shield = itempaths[26].path;
-    // this.state = {
-    //   Level: 0,
-    //   EXP: 150,
-    //   EXPneeded: 200,
-    //   Points: 5,
-    //   HP: 70,
-    //   HPmax: 100,
-    //   Strength: 5,
-    //   Agility: 5,
-    //   Luck: 5,
-    //   Intelligence: 5,
-    // }
   }
   klik = e => {
     // console.log(e.target.id);
@@ -35,16 +23,19 @@ class Ekwipunek extends Component {
       switch (e.target.id) {
         case '1':
           // console.log('');
-          this.setState({ Strength: ++this.state.Strength, Points: --this.state.Points });
+          this.setState({ Strength: this.state.Strength + 1, Points: this.state.Points - 1 });
           break;
         case '2':
-          this.setState({ Agility: ++this.state.Agility, Points: --this.state.Points });
+          this.setState({ Agility: this.state.Agility + 1, Points: this.state.Points - 1 });
           break;
         case '3':
-          this.setState({ Luck: ++this.state.Luck, Points: --this.state.Points });
+          this.setState({ Luck: this.state.Luck + 1, Points: this.state.Points - 1 });
           break;
         case '4':
-          this.setState({ Intelligence: ++this.state.Intelligence, Points: --this.state.Points });
+          this.setState({
+            Intelligence: this.state.Intelligence + 1,
+            Points: this.state.Points - 1,
+          });
           break;
       }
     }
@@ -59,6 +50,7 @@ class Ekwipunek extends Component {
         boots={this.boots}
         weapon={this.weapon}
         helm={this.helm}
+        points={this.state.Points}
       >
         <img id="char" src={postac} />
         <div className="item" id="helm" />
@@ -67,16 +59,16 @@ class Ekwipunek extends Component {
         <div className="item" id="sword" />
         <div className="item" id="shield" />
         <Card title="Stats:">
-          <Card.Grid style={gridStyle} className="staty">
+          <Card.Grid style={gridStyle} className="staty1">
             Level: {this.state.Level}
           </Card.Grid>
-          <Card.Grid style={gridStyle} className="staty">
+          <Card.Grid style={gridStyle} className="staty1">
             EXP: {this.state.EXP}/{this.state.EXPneeded}
           </Card.Grid>
-          <Card.Grid style={gridStyle} className="staty">
+          <Card.Grid style={gridStyle} className="staty1">
             Points to spend: {this.state.Points}
           </Card.Grid>
-          <Card.Grid style={gridStyle} className="staty">
+          <Card.Grid style={gridStyle} className="staty1">
             HP: {this.state.HP}/{this.state.HPmax}
           </Card.Grid>
           <Card.Grid id="1" onClick={this.klik} style={gridStyle} className="staty">
@@ -119,9 +111,6 @@ const Container = styled.h2`
     background-repeat: no-repeat;
     position: absolute;
   }
-  .staty {
-    user-select: none; /* Standard syntax */
-  }
   #helm {
     background-image: url("${props => props.helm}");
     top: 7vh;
@@ -146,8 +135,15 @@ const Container = styled.h2`
     top: 25vh;
     left: 47vw;
   }
-  .gridStyle :hover {
+  .staty, .staty1 {
+    user-select: none; /* Standard syntax */
+  }
+  .staty1 :hover {
+    transform: scale(1);
+  }
+  .staty :hover {
     cursor: pointer;
+    background-color: ${props => (props.points ? 'lightgreen' : 'red')};
   }
 `;
 const gridStyle = {
