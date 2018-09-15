@@ -19,7 +19,7 @@ class ItemList extends Component {
     return (<div>
 
         <Tabs defaultActiveKey="1" onChange={callback}>
-          <TabPane tab={this.props.items[0].kind} key="1">TUTAJ LISTA PRZEDMIOTOW</TabPane>
+          <TabPane tab={this.props.items[0].kind} key="1">{this.props.items[0].weaponKind}</TabPane>
           <TabPane tab={this.props.items[1].kind} key="2">CTUTAJ LISTA PRZEDMIOTOW</TabPane>
           <TabPane tab={this.props.items[2].kind} key="3">CTUTAJ LISTA PRZEDMIOTOW</TabPane>
         </Tabs>
