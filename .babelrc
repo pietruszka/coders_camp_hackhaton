@@ -1,0 +1,22 @@
+{
+  "presets": [
+    "@babel/preset-react",
+    "@babel/preset-env"
+  ],
+  "plugins": [
+    "@babel/plugin-proposal-export-default-from",
+    "@babel/plugin-proposal-logical-assignment-operators",
+    ["@babel/plugin-proposal-optional-chaining", { "loose": false }],
+    ["@babel/plugin-proposal-pipeline-operator", { "proposal": "minimal" }],
+    ["@babel/plugin-proposal-decorators", { "legacy": true }],
+    "@babel/plugin-syntax-dynamic-import",
+    ["@babel/plugin-proposal-class-properties", { "loose": false }],
+    "babel-plugin-styled-components",
+    "@babel/plugin-transform-react-inline-elements"
+  ],
+  "env": {
+    "production": {
+        "plugins": ["@babel/plugin-transform-react-constant-elements"]
+    }
+}
+}

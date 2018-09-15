@@ -1,1 +1,3 @@
-# coders_camp_hackhaton
+# React Frontend Starter
+
+Zastaw plików umożliwiających rozpoczęcie aplikacji Reactowej zgodnej ze standardami ustalonymi w ramach CodersCrew.
