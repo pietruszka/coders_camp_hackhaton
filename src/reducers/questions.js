@@ -172,4 +172,151 @@ export default [
       },
     ],
   },
+  {
+    question: 'Ktory producent opracowal architekture procesorow x64?',
+    answear: [
+      {
+        content: 'intel',
+        correct: false,
+      },
+      {
+        content: 'AMD',
+        correct: true,
+      },
+      {
+        content: 'Sony',
+        correct: false,
+      },
+      {
+        content: 'nVidia',
+        correct: false,
+      },
+    ],
+  },
+  {
+    question: 'Platforma .NET zostala opracowana przez firme ?',
+    answear: [
+      {
+        content: 'Microsoft',
+        correct: true,
+      },
+      {
+        content: 'Amiga',
+        correct: false,
+      },
+      {
+        content: 'Nvidia',
+        correct: false,
+      },
+      {
+        content: 'Lexsus',
+        correct: false,
+      },
+    ],
+  },
+  {
+    question: 'Marka Infinity nalezy do koncernu ?',
+    answear: [
+      {
+        content: 'Renault-Nissan',
+        correct: true,
+      },
+      {
+        content: 'Fiat',
+        correct: false,
+      },
+      {
+        content: 'BMW',
+        correct: false,
+      },
+      {
+        content: 'PSA',
+        correct: false,
+      },
+    ],
+  },
+  {
+    question: 'czym jest Microsoft Azure ?',
+    answear: [
+      {
+        content: 'Wtyczka do Worda',
+        correct: false,
+      },
+      {
+        content: 'portalem do obslugi chmury obliczeniowej',
+        correct: true,
+      },
+      {
+        content: 'Rodzajem licencji',
+        correct: false,
+      },
+      {
+        content: 'programem do partycjonowania dysku',
+        correct: false,
+      },
+    ],
+  },
+  {
+    question: 'silnik spalinowy, o zaplonie samoczynym to silnik ?',
+    answear: [
+      {
+        content: 'Rakietowy',
+        correct: false,
+      },
+      {
+        content: 'Diesla',
+        correct: true,
+      },
+      {
+        content: 'Benzynowy',
+        correct: false,
+      },
+      {
+        content: 'Elektryczny',
+        correct: false,
+      },
+    ],
+  },
+  {
+    question: 'Intel 4790K to processor: ?',
+    answear: [
+      {
+        content: '4 rdzeniowy, 4 watkowy',
+        correct: false,
+      },
+      {
+        content: '4 rdzeniowy, 8 watkowy',
+        correct: true,
+      },
+      {
+        content: '16 rdzeniowy, 32 watkowy',
+        correct: false,
+      },
+      {
+        content: '8 rdzeniowy, 16 watkowy',
+        correct: false,
+      },
+    ],
+  },
+  {
+    question: 'ktore rozszerzenie obsluguje przezroczystosc obrazu  ?',
+    answear: [
+      {
+        content: '.jpg',
+        correct: false,
+      },
+      {
+        content: '.amva',
+        correct: false,
+      },
+      {
+        content: '.hdr',
+        correct: false,
+      },
+      {
+        content: '.png',
+        correct: true,
+      },
+    ],
+  },
 ];
