@@ -20,7 +20,6 @@ const initialState = {
   Intelligence: 5,
 };
 
-
 export default function (state = initialState, { type, payload }) {
   switch (type) {
     case SET_PROFILE: {
