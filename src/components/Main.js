@@ -1,13 +1,29 @@
 import React, { PureComponent } from 'react';
 import { Input, notification } from 'antd';
-import lodash from 'lodash';
+import { Button} from 'antd';
+import styled from 'styled-components';
 
-import helmet from './img/images.png';
 import connect from 'react-redux/es/connect/connect';
 import { addTeamUser } from '../reducers/teamReducer';
 import { setUserProfile } from '../reducers/rootReducer';
 import socket from './../socket'
 
+const StyledLogin = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 10px;
+  span {
+    display: inline-block;
+    width: 300px;
+    margin: 0 auto;
+  }
+  input {
+    display: inline-block;
+    width: 300px;
+    margin: 0 auto;
+  }
+`;
 
 class Main extends PureComponent {
   constructor() {
@@ -51,10 +67,10 @@ class Main extends PureComponent {
   }
 
   render() {
-    return <div>
-      <Input placeholder="your name" value={this.state.login} onChange={(e) => this.setState({login: e.target.value})}/>
-      <span onClick={() => this.onSendClick()}>Send</span>
-    </div>;
+    return <StyledLogin>
+      <Input style={{marginBottom: '30px', marginLeft: '270px'}} placeholder="your name" value={this.state.login} onChange={(e) => this.setState({login: e.target.value})}/>
+      <span><Button onClick={() => this.onSendClick()} type="primary" size="large">Send</Button></span>
+    </StyledLogin>;
   }
 }
 

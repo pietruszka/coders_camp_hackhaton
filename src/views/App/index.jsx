@@ -109,7 +109,7 @@ class App extends PureComponent {
 
   render() {
     // console.log(this.props.profile)
-    const { mana, exp, name } = this.props.profile
+    const { HP, EXP, name } = this.props.profile
     return (
       <Fragment>
         <Layout style={{ height: '100%' }}>
@@ -129,43 +129,37 @@ class App extends PureComponent {
                   </Menu.Item>
                   <Menu.Item key="2">
                     <Link to="/missions">
-                      <Icon type="video-camera" />
+                      <Icon type="compass" />
                       <span>Missions</span>
                     </Link>
                   </Menu.Item>
                   <Menu.Item key="3">
                     <Link to="/equipment">
-                      <Icon type="upload" />
+                      <Icon type="shop" />
                       <span>Equipment</span>
                     </Link>
                   </Menu.Item>
                   <Menu.Item key="4">
                     <Link to="/courses">
-                      <Icon type="upload" />
+                      <Icon type="read" />
                       <span>Courses</span>
                     </Link>
                   </Menu.Item>
                   <Menu.Item key="5">
                     <Link to="/dm">
-                      <Icon type="upload" />
+                      <Icon type="thunderbolt" />
                       <span>Deathmatch</span>
                     </Link>
                   </Menu.Item>
                   <Menu.Item key="6">
                     <Link to="/team">
-                      <Icon type="upload" />
+                      <Icon type="team" />
                       <span>Team</span>
-                    </Link>
-                  </Menu.Item>
-                  <Menu.Item key="7">
-                    <Link to="/logout">
-                      <Icon type="upload" />
-                      <span>Logout</span>
                     </Link>
                   </Menu.Item>
                   <Menu.Item key="8">
                     <Link to="/">
-                      <Icon type="upload" />
+                      <Icon type="login" />
                       <span>Login</span>
                     </Link>
                   </Menu.Item>
@@ -178,9 +172,10 @@ class App extends PureComponent {
                       className="trigger"
                       type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
                       onClick={this.toggle}
+                      style={{display: 'none'}}
                     />
                     <span>{name}</span>
-                    <StyledStats mana={mana} exp={exp} >
+                    <StyledStats mana={HP} exp={EXP} >
                       <div className="life"></div>
                       <div className="exp"></div>
                     </StyledStats>
