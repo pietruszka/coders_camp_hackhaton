@@ -3,8 +3,9 @@ import connect from 'react-redux/es/connect/connect';
 import { setUserProfile } from '../reducers/rootReducer';
 import { Button, notification } from 'antd';
 import helmet from './img/images.png';
+import { addQuestProgress } from '../reducers/missionList';
 import styled from 'styled-components';
-const ReactMarkdown = require('react-markdown')
+const ReactMarkdown = require('react-markdown');
 
 const StyledQuestion = styled(ReactMarkdown)`
   background-color: #9ea93f;
@@ -53,6 +54,7 @@ class Courses extends PureComponent {
   };
 
   openNotification = () => {
+    this.props.addQuestProgress(); //Check if quest should gain progress
     notification.open({
       message: (<div style={{ color: '#60712f', fontSize: '18px' }}>Dobrze!! Dostajesz {this.monster.exp + Math.floor(this.props.profile.Intelligence / 10)} Doświadczenia <br /> Zadałeś {this.props.profile.Strength} obrażeń</div>),
       description: (<div style={{ display: 'flex', justifyContent: 'center' }}><img src={helmet} /></div>),
@@ -112,27 +114,30 @@ class Courses extends PureComponent {
     }
   };
 
-  renderAnswearList = (ansList) => {
+  renderAnswearList = ansList => {
     return ansList.map(({ content, correct }) => {
       return (
-        <div onClick={() => this.onAnswClick(correct)}><StyledAnswear source={content}>
-        </StyledAnswear></div>
-      )
-    })
-  }
+        <div onClick={() => this.onAnswClick(correct)}>
+          <StyledAnswear source={content} />
+        </div>
+      );
+    });
+  };
   render() {
     // console.log(this.props.course) 
     // const { question, answear } = this.getRandomQuestion();
     if (this.state.question) {
       return (
         <Fragment>
-          <StyledQuestion source={this.state.question.question}></StyledQuestion>
+          <StyledQuestion source={this.state.question.question} />
           <div>{this.renderAnswearList(this.state.question.answear)}</div>
         </Fragment>
       );
     } else return null;
-
   }
 }
 
-export default connect(({ course, profile }) => ({ course, profile }), ({ setUserProfile }))(Courses);
+export default connect(
+  ({ course, profile }) => ({ course, profile }),
+  { setUserProfile, addQuestProgress },
+)(Courses);
