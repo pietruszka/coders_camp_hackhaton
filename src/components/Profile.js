@@ -1,7 +1,8 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { Button } from 'antd';
-import { setUserProfile } from './../reducers/rootReducer'
+import { setUserProfile } from './../reducers/rootReducer';
+import Ekwipunek from './ekwipunek/ekwipunek'
 
 
 class Profile extends PureComponent {
@@ -15,15 +16,16 @@ class Profile extends PureComponent {
   }
 
   render() {
-    const { name, mana, exp } = this.props.profile;
-    console.log(this.props)
-    return <div>
-      <div>Profile</div>
-      <Button onClick={() => this.onChangeButtonClick()} type="danger">Danger</Button>
-      <div>name: {name}</div>
-      <div>mana: {mana}</div>
-      <div>exp: {exp}</div>
-    </div>;
+    return (<Ekwipunek />)
+    // const { name, mana, exp } = this.props.profile;
+    // console.log(this.props)
+    // return <div>
+    //   <div>Profile</div>
+    //   <Button onClick={() => this.onChangeButtonClick()} type="danger">Danger</Button>
+    //   <div>name: {name}</div>
+    //   <div>mana: {mana}</div>
+    //   <div>exp: {exp}</div>
+    // </div>;
   }
 }
 
@@ -37,4 +39,4 @@ Profile.defaultProps = {
 
 
 
-export default connect(({profile}) => ({profile}), ({ setUserProfile }))(Profile);
+export default connect(({ profile }) => ({ profile }), ({ setUserProfile }))(Profile);
