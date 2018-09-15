@@ -158,6 +158,12 @@ class App extends PureComponent {
                       <span>Logout</span>
                     </Link>
                   </Menu.Item>
+                  <Menu.Item key="7">
+                    <Link to="/login">
+                      <Icon type="upload" />
+                      <span>Login</span>
+                    </Link>
+                  </Menu.Item>
                 </StyledMenu>
               </StyledSider>
               <StyledLayout>
