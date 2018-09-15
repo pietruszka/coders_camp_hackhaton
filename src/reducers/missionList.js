@@ -1,5 +1,8 @@
+import store from '../store';
+import { completeQuest } from '../actions';
 const ADD_NEW_QUEST = 'ADD_NEW_QUEST';
 const ADD_QUEST_PROGRESS = 'ADD_QUEST_PROGRESS';
+
 export const addNewQuest = mission => {
   return {
     type: ADD_NEW_QUEST,
@@ -11,6 +14,7 @@ export const addQuestProgress = () => {
     type: ADD_QUEST_PROGRESS,
   };
 };
+
 export default function(state = [], action) {
   console.log(action);
   switch (action.type) {
@@ -19,10 +23,9 @@ export default function(state = [], action) {
       return [...state, action.payload];
     }
     case ADD_QUEST_PROGRESS: {
-      console.log('mission ++');
       let temp = state.map(item => {
         item.progress = ++item.progress;
-        console.log(item);
+        if (item.progress == item.goal) store.dispatch(completeQuest(item));
         return item;
       });
       return temp;
