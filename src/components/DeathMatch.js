@@ -8,8 +8,6 @@ import { notification } from 'antd';
 import helmet from './img/images.png';
 const ReactMarkdown = require('react-markdown')
 import socket from './../socket';
-// import socketIOClient from 'socket.io-client';
-// const socket = socketIOClient('http://127.0.0.1:3005');
 
 const StyledQuestion = styled(ReactMarkdown)`
   background-color: #9ea93f;
@@ -103,6 +101,7 @@ class DeathMatch extends PureComponent {
       this.openNotification();
       this.setState({question: this.getRandomQuestion()})
     } else {
+      this.setState({question: this.getRandomQuestion()})
       this.openNotificationUserKicked()
       socket.emit('user_kicked', this.props.profile.name);
       this.props.kickTeamUser(this.props.profile.name);
